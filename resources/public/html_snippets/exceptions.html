@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exceptions</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="static\css\styles.css">
+    <link rel="stylesheet" href="static\css\animations.css">
+<style>
+    .heading{
+        margin-top: -30px;
+        margin-bottom:-20px;}
+    p{
+    font-size:18px;}
+    .innercontent{font-size:15px;}
+    .codecontent{
+    padding-top:5px;
+    padding-bottom:2px;}
+    code{
+    background-color:#d9edf7;
+    font-size:14px;
+    }
+    pre{
+    font-size:14px;
+    }
+    .navbar2{
+    font-size:17px;
+    padding-bottom:10px;}
+</style>
+</head>
+<body>
+<div class="text-center">
+    <div class="container">
+        <div class="row heading">
+            <img src="static\images\exceptions.png">
+        </div>
+        <div class="row navbar2">
+            <div class="col-md-2"><a href="{{url_for('basics')}}">Basics</a></div>
+            <div class="col-md-2"><a href="{{url_for('controlflow')}}">Control Flow</a></div>
+            <div class="col-md-2"><a href="{{url_for('collections')}}">Collections</a></div>
+            <div class="col-md-2"><a href="{{url_for('exceptions')}}">Exceptions</a></div>
+            <div class="col-md-2"><a href="{{url_for('errors')}}">Errors</a></div>
+            <div class="col-md-2"><a href="{{url_for('beyondbasics')}}">Beyond Basics</a></div>
+
+        </div><br>
+        <div class="row">
+            <p class="text-center">Exceptions are ways to alter the normal control flow of the program. It includes <b>Raising Exceptions</b> & <b>Handling Exceptions</b></p><br>
+            <p class="text-left"><b>1.Raising Exceptions</b><br>
+               <div class="text-left innercontent">Let's Consider a simple program that prints out the square of a number
+        <div class="row innercontent text-left codecontent">
+            <div class="col-md-6">
+            Sample Code<code style=display:block;white-space:pre-wrap;color:#337ab7>def our_doubler(input):
+    input=int(input)
+    print (input*2)
+
+our_doubler(3)</code></div>
+            <div class="col-md-6">Output<code style=display:block;white-space:pre-wrap;color:#337ab7;>6
+            </code></div>
+            </div>
+
+        </div>
+            <p class="text-left innercontent">This works as we have control of what is passed to <i>our_doubler</i> function, but real world problems are complex and in most cases our input is going to depend on our end user. What if a non integer is passed to our function?</p>
+
+            <div class="row innercontent text-left codecontent">
+                <div class="col-md-6">
+                    Sample Code<code style=display:block;white-space:pre-wrap;color:#337ab7>def our_doubler(input):
+    input=int(input)
+    print (input*2)
+
+our_doubler('codebreaker')</code>
+                </div><div class="col-md-6">Output<code style=display:block;white-space:pre-wrap;color:#337ab7;>ValueError: invalid literal for int() with base 10: 'codebreaker'
+            </code></div>
+            </div>
+            <p class="text-left innercontent">The int() function isn't capable of converting our input 'codebreaker' due to which it throws an error and our program crashes. Here's where exception handling comes in handy.<br></p>
+
+            <div class="row innercontent text-left codecontent">
+                <div class="col-md-6">
+                    Sample Code<code style=display:block;white-space:pre-wrap;color:#337ab7>def our_doubler(input):
+    if type(input) is not int:
+        raise ValueError
+    input=int(input)
+    print (input*2)
+
+our_doubler('codebreaker')</code>
+                </div><div class="col-md-6">Output<code style=display:block;white-space:pre-wrap;color:#337ab7;>File "C:/Users/Cavan/PycharmProjects/blog/testing.py", line 3, in our_doubler
+    raise ValueError
+ValueError
+
+            </code></div>
+            </div>
+            <p class="text-left innercontent">As you can see our program still crashes, because just raising an exception is not enough, we need to handle them as well, which brings us to the next section. </p>
+            <p class="text-left"><b>2.Handling Exceptions</b><br>
+            <div class="innercontent text-left">Exception Handling is resuming the control flow of the program by redirecting flow to some other block incase of error. The above code snipper can be rewritten as
+        <div class="row innercontent text-left codecontent">
+                <div class="col-md-6">
+                    Sample Code<code style=display:block;white-space:pre-wrap;color:#337ab7>def our_doubler(input):
+    try:
+        if type(input) is not int:
+            raise ValueError
+        input=int(input)
+        print (input*2)
+    except ValueError:
+        print ("Our function accepts numbers only!")
+our_doubler('codebreaker')</code>
+                </div><div class="col-md-6">Output<code style=display:block;white-space:pre-wrap;color:#337ab7;>Our function accepts numbers only!</code></div>
+            </div>
+           <p class="text-left innercontent">Now rather our program crashing on receiving a non integer value, we have succesfully handled it and displayed a meaningful message to the end user.<br>
+        <b>NOTE</b>- Python allows us to catch most of its exceptions , however not all exceptions are needed to be caught and sometimes it is better to stop the program in such cases rather than to continue with inconsistent and incorrect data.</p>
+        </div></p>
+        </div>
+    </div>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="static/js/bootstrap.js"></script>
+</body>
+</html>

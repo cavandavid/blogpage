@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Errors</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="static\css\styles.css">
+    <link rel="stylesheet" href="static\css\animations.css">
+<style>
+    .heading{
+        margin-top: -30px;
+        margin-bottom:-20px;}
+    p{
+    font-size:18px;}
+    .innercontent{font-size:15px;}
+    .codecontent{
+    padding-top:5px;
+    padding-bottom:2px;}
+    code{
+    background-color:#d9edf7;
+    font-size:14px;
+    }
+    pre{
+    font-size:14px;
+    }
+    .navbar2{
+    font-size:17px;
+    padding-bottom:10px;}
+</style>
+</head>
+<body>
+<div class="text-center">
+    <div class="container">
+        <div class="row heading">
+            <img src="static\images\errors.png">
+        </div>
+        <div class="row navbar2">
+            <div class="col-md-2"><a href="{{url_for('basics')}}">Basics</a></div>
+            <div class="col-md-2"><a href="{{url_for('controlflow')}}">Control Flow</a></div>
+            <div class="col-md-2"><a href="{{url_for('collections')}}">Collections</a></div>
+            <div class="col-md-2"><a href="{{url_for('exceptions')}}">Exceptions</a></div>
+            <div class="col-md-2"><a href="{{url_for('errors')}}">Errors</a></div>
+            <div class="col-md-2"><a href="{{url_for('beyondbasics')}}">Beyond Basics</a></div>
+
+        </div><br>
+        <p class="row">
+            <p class="text-left">Errors detected during execution are called as Exceptions. All StandardError's originate from class Exception which in turn inherits from class BaseException. There are plenty of errors in Python, in this module we will go through some of the more common ones.
+            <br>
+            <b>1. ValueError</b><br>
+            <div class="innercontent text-left">
+                This error occurs when a function receives an argument that is of correct type but is of incompatible value to a function. <br>
+            For eg. <br>
+            <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>print (int("99"))
+>>99
+print (int("im here to break your code :)"))
+>>ValueError: invalid literal for int() with base 10: 'im here to break your code :)</code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+            <!--For eg.  int(‘99’) will return 99 as it accepts strings but if you try something like int(“abcd”)-->
+             <br><b>NOTE:</b> int function accepts string objects, it is the value of the string object that causes the opertaion to fail
+            </div>
+            <!--CHUNK 2 -->
+            </p>
+            <br>
+            <p class="text-left">
+            <b  style="font-size:18px;">2. TypeError</b><br>
+            <div class="innercontent text-left">
+                This error occurs when a function receives an object of incorrect type i.e incompatible to the function.<br> For eg.
+            </div>
+            <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>print (int([1,2,3,4,5]))
+>> TypeError: int() argument must be a string, a bytes-like object or a number, not 'list'           </code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+            </p>
+            <!--CHUNK 3-->
+            <p class="text-left">
+            <b  style="font-size:18px;">3. IndentationError</b><br>
+            <div class="innercontent text-left">
+                This error occurs when we have inconsistency in the indentation of our code.<br>For eg.
+            </div>
+            <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>def do_something():
+    try:
+        print ("Hello")
+    except:
+
+do_something()
+
+>>    do_something()
+    ^
+IndentationError: expected an indented block</code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+            <div class="innercontent text-left">
+            Here have left our except block empty.
+            It is not allowed to have empty blocks, use <b> <i>pass</i></b> instead which literally does nothing and is just used as a filler. The above code snippet can be rewritten as
+            </div>
+            <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>def do_something():
+    try:
+        print ("Hello")
+    except:
+        pass
+
+do_something()
+>> Hello            </code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+
+                </p>
+            <!--CHUNK 4-->
+            <p class="text-left">
+                <b>4. NameError</b><br>
+                <div class="innercontent text-left">
+                This error occurs when we call a function or a variable before it has been defined.
+                for eg.<br>
+        </div>
+                <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>print (displaymessage())
+
+def displaymessage():
+	return 'Welcome, good sir'
+
+>>NameError: name 'displaymessage' is not defined
+            </code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+            <p class="text-left innercontent">Here we have called displaymessage before defining it</p>
+            </p>
+        <!--CHUNK 5-->
+            <p class="text-left"><b>5. SyntaxError</b>
+            <div class="text-left innercontent">
+                This error is commonly seen amongst new Python developers , so if you see it don’t freak out. It occurs when our code is not syntactically correct
+    <br>
+        <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>while True
+    print('Check your syntax')
+
+>>while True
+             ^
+SyntaxError: invalid syntax</code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+        <b>NOTE</b>: The missing colon in front of the while condition
+
+    </div>
+        </p>
+        <p class="text-left"><b>6. IndexError</b>
+        <div class="text-left innercontent">
+        This error occurs when we try to access an indexed element from an iterable series like strings, lists etc which doesn’t exist or is out of bounds.<br>
+         <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>my_list=[1,2,3,4,5]
+print (my_list[10])
+
+>>print (my_list[10])
+IndexError: list index out of range</code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+        Here We are trying to access the 10th element from a list that has only 5 elements.
+
+    </div>
+        </p>
+        <!--7TH CHUNK-->
+        <p class="text-left"><b>7. KeyError</b>
+        <div class="text-left innercontent">
+        This error occurs when we the compiler is unable to find the specified key in the dictionary.<br>
+         <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>my_dict={'Jon':'Targaryen','Sansa':'Stark','Arya':'Stark'}
+print (my_dict['Ramsey'])
+
+>>print (my_dict['Ramsey'])
+KeyError: 'Ramsey'
+            </code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+        Here We are trying to access the key 'Ramsey' which is not present in the dictionary.
+
+    </div>
+        </p>
+        <!--8TH CHUNK-->
+        <p class="text-left"><b>8. ImportError</b>
+        <div class="text-left innercontent">
+        This error occurs when we the compiler is unable to find the module we are trying to import in our program.This can be due to a spelling error or the module has not been installed on your system.<br>
+         <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>import teme
+
+>>import teme
+ModuleNotFoundError: No module named 'teme'
+
+            </code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+        Perhaps a drunk man trying to type the module <b><i>time</i></b>
+
+    </div>
+        </p>
+        <!--9TH CHUNK-->
+        <p class="text-left"><b>9. ZeroDivisionError</b>
+        <div class="text-left innercontent">
+        This error occurs when we try to divide by 0.<br>
+         <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>def our_divider(num):
+    return 100/num
+
+print (our_divider(0))
+
+>>    return 100/num
+ZeroDivisionError: division by zero
+</code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+         It is better to catch this as if we succeed in our division by zero we will end up tearing a hole in time and space.
+
+    </div>
+        </p>
+        <!--10th Chunk-->
+        <p class="text-left"><b>10. NotImplementedError</b>
+        <div class="text-left innercontent">
+        Remember abstract methods from  our days in Java? Well in old school Python before the days of abc  module, definining abstract methods was a bit lengthy.<br>
+         <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>class animal():
+    def talk(self):
+            print ('Hello good sir, im an animal')
+class dog(animal):                 #class dog is inheriting from class animal
+	def talk(self):
+		print ('Wuff wuff!')
+
+d=dog()
+d.talk()
+
+>> Wuff wuff!
+</code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+         In the above example, we have initialized class dog, however nothing is stopping us from initializing parent class animal and calling its talk method, which breaks the fundamental concept of an abstract class. Since as we know abstract classes cannot be initialized and abstract methods should generally get their definition from the child class.
+        In this case our NotImplementedError comes in handy, rewriting above code as.
+
+
+    </div>
+        <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>class animal():
+    def talk(self):
+        raise NotImplementedError("You cannot initialise abstract class")
+class dog(animal):
+    def talk(self):
+        print ("Wuff wuff!")
+d=animal()
+d.talk()
+
+>>raise NotImplementedError("You cannot initialise abstract class")
+NotImplementedError: You cannot initialise abstract class
+
+</code></div>
+            <div class="col-md-4">
+                <!--<code style=display:block;white-space:pre-wrap;color:#337ab7;>6-->
+            <!--</code>-->
+            </div>
+            </div>
+        </p><br>
+        <p> <b>NOTE</b>: Not every exception is exceptional enough to be caught, infact it is the responsibility of the programmer to decide which exception should be caught and which shouldn't.<br>
+        In general, you should avoid catching IndentationError, SyntaxError , NameError as they are due to programmer mistakes.
+        </p>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="static/js/bootstrap.js"></script>
+</body>
+</html>

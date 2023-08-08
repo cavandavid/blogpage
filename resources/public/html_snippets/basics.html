@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basics</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="static\css\styles.css">
+    <link rel="stylesheet" href="static\css\animations.css">
+<style>
+    .heading{
+        margin-top: -30px;
+        margin-bottom:-20px;}
+    p{
+    font-size:18px;}
+    .innercontent{font-size:15px;}
+    .codecontent{
+    padding-top:5px;
+    padding-bottom:2px;}
+    code{
+    background-color:#d9edf7;
+    font-size:14px;
+    }
+    .snake{
+    max-height:100px;
+    max-width:400px;}
+    pre{
+    font-size:15px;
+    }
+    .navbar2{
+    font-size:17px;
+    padding-bottom:10px;}
+
+</style>
+</head>
+<body>
+<div class="text-center">
+    <div class="container">
+        <div class="row heading">
+
+            <img src="static\images\basics.png">
+        </div>
+        <div class="row navbar2">
+            <div class="col-md-2"><a href="{{url_for('basics')}}">Basics</a></div>
+            <div class="col-md-2"><a href="{{url_for('controlflow')}}">Control Flow</a></div>
+            <div class="col-md-2"><a href="{{url_for('collections')}}">Collections</a></div>
+            <div class="col-md-2"><a href="{{url_for('exceptions')}}">Exceptions</a></div>
+            <div class="col-md-2"><a href="{{url_for('errors')}}">Errors</a></div>
+            <div class="col-md-2"><a href="{{url_for('beyondbasics')}}">Beyond Basics</a></div>
+
+        </div><br>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center"><b>Python is an Interpreted Language</b></p>
+                <p class="innercontent">This means that unlike languages like C++, Java etc. , programs do not have to be compiled before being run.</p>
+                <br><p class="text-center"><b>Python is a Strongly Typed Language</b></p>
+                <p class="innercontent">Every object in python has a type like int, float , string etc.</p>
+                <br><p class="text-center"><b>Python is a Dynamic Language</b><br>
+                <p class="innercontent">This means that up until run time, the type of the object is not specfied.</p>
+                <div class="row"><div class="col-md-12"><pre class="text-left">def our_adder(object1,object2):    <i>#<b>def</b> keyword is used to define a function, here our function has 2 parameters i.e object1 & object2</i>
+    print (object1+object2)
+
+our_adder(2,3)      <i>#Here we are calling the function we had defined earlier and passing arguments 2 and 3 to it</i>
+
+>>5                 <i>#On passing integers, object1 and object2 behave as integers and perform addition operation</i>
+
+our_adder('2','3')      <i>#Here again, we are calling our_adder function and this time we are passing strings to it</i>
+
+>>23                    <i>#On passing strings, object1 and object2 behave as strings and perform string concatenation</i>
+          </pre></div></div>
+            <p class="text-left innercontent">Don't worry if this seems too much to take in now, after a few modules it will be a breeze :), lets head to the basics.</p>
+            <p class="text-left innercontent">Python has primitive data types such as int, float etc as well as collection data types such as lists, dictionaries etc. Lets go through some of them in detail.</p>
+            <p class="text-left"><b>1. int</b></p>
+            <p class="innercontent text-left">Integers in python are signed(+ve or -ve) with no decimal point.<br>
+            <pre class="text-left"><i>#Integers are specified in decimal form by default
+10
+
+#They can also be specfied in binary by adding prefix 0b                </i>
+print(0b10)
+>>2
+
+#They can also be specified in hexadecimal by adding prefix 0x
+print(0x10)
+>>16
+            </pre>
+            </p>
+            <p class="text-left"><b>2. float</b></p>
+            <p class="innercontent text-left">Any number that has a decimal point or letter e is considered as a float by Python interpreter</p>
+                <pre class="text-left">a=10.0
+print(a)
+10.0
+
+a=10e3
+print ((a))
+10000.0
+
+#Any calculation between int and float will be converted to float
+print(1+2.0)
+3.0                </pre>
+            <p class="text-left"><b>3. bool</b></p>
+            <p class="innercontent text-left">Bool type is used to represent the state of an object. It can have only two value <b>True</b> of <b>False</b>. It also consists of bool constructor</p>
+            <pre class="text-left">#For number types(ints and floats) , all non-zero values are considered as True.
+
+a=bool(1)
+print(a)
+>>True
+
+a=bool(0)
+print(a)
+>>False
+
+#For strings, only an empty string is considered as False
+
+a=bool('')
+print(a)
+>>False
+            </pre>
+            <p class="text-left"><b>4. None</b></p>
+            <p class="innercontent text-left">None is used to display absence of a value</p>
+            <p class="text-left"><b>5. Strings</b></p>
+            <p class="innercontent text-left">String is a collection of unicode codepoints.</p>
+                <pre class="text-left">#Defining a string
+
+name="Cavan David"
+print(name)
+>>Cavan David
+
+#Python has a number of built-in functions, one such is len() which isn't exclusive to strings but can be applicable to any iterable series(lists, dictionaries etc)
+which returns the length of the object.
+
+print(len(name))
+>>11
+
+#Since strings are collection types, we can access any of its members by providing their index position. Remember, indexing always starts from 0.
+
+print(name[0])
+>>C
+                </pre>
+
+                <p class="text-left innercontent">We will cover collection types in detail in a further module.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="static/js/bootstrap.js"></script>
+</body>
+</html>

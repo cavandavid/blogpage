@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="css\styles.css">
+    <link rel="stylesheet" href="css\animations.css">
+    <link rel="stylesheet"
+      href="static\css\styles\color-brewer.css">
+    <script src="static\js\highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<style>
+
+   .content{
+    height:300px;
+    margin-top:30px;
+    padding-bottom: 10px;
+    color:#000;
+    }
+    h3{
+        color:#000;
+        font-size:18px;
+    }
+    .p-header{
+    font-size:24px;}
+    a{
+      font-size:16px;
+    }
+    p{
+      font-size:16px;
+    }
+    .syntax{
+      color:#86888a;
+      font-size:21px;
+    }
+    .p-normal{
+      font-size:16px;
+    }
+    .join-header{
+      font-size:44px;
+      font-weight: bold;
+      color:#4e5e67;
+    }
+    .note{
+      color:dimgrey;
+    }
+    pre{
+      font-size:14px;
+      background-color:#fff;
+    }        
+</style>
+</head>
+<body>
+<a href="/">
+  <img src="static/images/back2.png" style="width:48px">
+</a>	
+<div class="text-center main-content">
+    <div class="container">
+        <div class="row content">
+            <div class="col-md-12">
+              <legend style="font-size:82px; color:#849b9c;">Clojure</legend>
+            </div>
+            <!-- NAVBAR -->
+            <!-- <div class="col-md-12"> -->
+              <div class="row">
+            <div class="col-md-3">
+              <a href=""><p class="p-normal"></p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="/clojuremap"><p class="p-normal">Map, Reduce, Filter</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="/clojuretimetravel"><p class="p-normal">Time and Clojure</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href=""><p class="p-normal"></br></p></a>
+            </div>
+          </div></br>     
+          <div class="col-md-2"></div>
+          <div class="col-md-8 p-normal text-left" style="padding-top:20px;">
+            <p class="join-header">Map</p>
+            <p class="syntax">Syntax</p>
+            <pre style="background-color: #fbfbfb;">(map function-that-takes-single-argument collection)</pre>
+            <p><br>Map function helps you execute a set of commands for each element of a collection. The result is a collection containing the results of the function on each item</p>
+            
+            <pre><code class="clojure-repl">user=> (def my-collection `(1 2 3 4 5 6 7 8 9 10))
+#'user/my-collection
+</code></pre>
+      <pre><code>user=> (map inc my-collection)
+(2 3 4 5 6 7 8 9 10 11)</code></pre>
+      <p>Remember the syntax for the map function, the function must be one that takes a single argument. So the above code snippet can also be written as<p>
+      <pre><code>user=> (map (fn [x] (inc x)) my-collection)
+(2 3 4 5 6 7 8 9 10 11)</code></pre>
+      <pre><code>user=> (map #(inc %) my-collection)
+(2 3 4 5 6 7 8 9 10 11)</code></pre>
+      <p>The Map function returns a lazy sequence. The thing with lazy sequences is that the side effects(things like printing,writing to file systems etc) in them dont get evaluated at definition</p>
+      <pre><code>user=> (def result (map #(do (println "Your number is "%) (inc %)) my-collection))
+#'user/result</code></pre>
+      <p>Well... atleast not until the value is requested</p>
+      <pre><code>user=> result
+Your number is  1
+Your number is  2
+Your number is  3
+Your number is  4
+Your number is  5
+Your number is  6
+Your number is  7
+Your number is  8
+Your number is  9
+Your number is  10
+(2 3 4 5 6 7 8 9 10 11)</code></pre>
+      <p class="join-header"></br>Filter</p>
+      <p class="syntax">Syntax</p>
+      <pre style="background-color: #fbfbfb;">(filter function collection)</pre>
+      <br>
+      <p>The filter function is similar to map, wherein it runs a function over each element
+Except the result is only those items, for which the function returned truthy value</p>
+      <pre><code>user=> (filter even? my-collection)
+(2 4 6 8 10)</code></pre>
+      <p class="note">Note: Like the map function, the filter also returns a lazy sequence</p>
+      <p class="join-header"><br>Reduce</p>
+      <p class="syntax">Syntax</p>
+      <pre style="background-color: #fbfbfb;">(reduce fn collection) OR (reduce fn first-arg collection)</pre>
+      <p class="note">NOTE: The function is a function that accepts two arguments.</p>
+      <p>If the optional first arguement is not given, the function takes the first two members of the collection</p>
+      <p>For the second iteration the result of the function's earlier call and the next item in the collection are passed as arguments to the function
+And so on , till we have traversed the last item of the collection.</p>
+      <pre><code>user=> (reduce + [1 2 3 4 5])
+15</code></pre>
+
+      <p class="note">Note: The result of Reduce may or may not be a collection, but the result of map and filter is always a collection</p>
+
+
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

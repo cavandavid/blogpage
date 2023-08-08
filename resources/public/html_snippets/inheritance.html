@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ControlFlow</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="static\css\styles.css">
+    <link rel="stylesheet" href="static\css\animations.css">
+<style>
+    .heading{
+        margin-top: -30px;
+        margin-bottom:-20px;}
+    p{
+    font-size:18px;}
+    .innercontent{font-size:16px;}
+    .codecontent{
+    padding-top:5px;
+    padding-bottom:2px;}
+    code{
+    background-color:#d9edf7;
+    font-size:14px;
+    }
+    .for_big_headings{
+    font-size:17px;}
+    pre{
+    font-size:14px;
+    }
+    pre{
+    font-size:14px;}
+    .navbar{
+    font-size:16px;
+    margin-right:-10px;
+    }
+
+</style>
+</head>
+<body>
+<div class="text-center">
+    <div class="container">
+        <div class="row heading">
+            <img src="static\images\beyond.png">
+        </div>
+        <div class="row outernavbar">
+            <div class="col-md-2"></div>
+            <div class="col-md-2 navbar"><a href="{{url_for('home')}}"> Back to Home</a></div>
+            <div class="col-md-2 navbar"><a href="{{url_for('beyondbasics')}}"> Comprehensions</a></div>
+            <div class="col-md-2 navbar"><a href="{{url_for('loopingtechniques')}}"> Looping Techniques</a></div>
+            <div class="col-md-2 navbar"><a href="{{url_for('inheritance')}}"> Inheritance, Abstract Class</a></div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <p class="text-left"><b>Inheritance</b><br>
+            <div class="text-left innercontent">Inheritance , as the word suggests is basically the act of transferring everything you own to your kin. In programming, it has similar meaning ,classes inherit all the functions and variables of their parent class.
+        </div> Let us see a real world example to furhter solidify our understanding of inheritance<br>
+            <pre class="text-left innercontent">class parent:               # parent class
+    def property(self):
+        return "3 bhk flat in Colaba"
+
+    def marriage(self):
+        return "Arranged marriage with Sharmaji's beti"
+
+class son(parent):          # son class is inheriting from parent
+    name=''
+    def __init__(self,Name):
+        self.name=Name
+
+#Create son object
+firstson=son('Cavan')       #Initialise son class and create object firstson
+a=firstson.property()
+b=firstson.marriage()
+print(a+" and "+b+" is given to my son Cavan")
+
+<b>Output</b>
+3 bhk flat in Colaba and Arranged marriage with Sharmaji's beti is given to my son Cavan  </pre>
+</p>
+            <p class="text-left innercontent">Inheritance is aimed at code reusablility and easy scalability. If i wish to give my sons more assets, i can simply add it to my parent class, and it will become available to all it's children classes</p>
+        <br>
+            <p class="text-left"> <b>Abstract Class</b><br></p>
+            <p class="text-left innercontent">Abstract class provides a common interface for all of its subclasses to use. Similarly, methods that are declared as abstract get their function definition from the child class that implements it.<br>
+            <br>Python's abc module(Abstract base classes) allows us to implement the concept of abstract classes. A simple example will help solidify our understanding of abstract classes and abstract methods.<br></p>
+        <pre class="text-left innercontent">from abc import ABCMeta, abstractmethod
+class animal(metaclass=ABCMeta):    #Declaring class as abstract
+
+    @abstractmethod                 #Declaring method as abstract
+    def talk(self):
+        print ("Never going to get executed")
+
+class dog(animal):
+    def talk(self):                 #Providing implementation details for abstract method
+        print ('Wuff wuff!')
+
+d= animal()                         #Trying to initialise abstract class
+d.talk()
+
+<b>Output</b>
+TypeError: Can't instantiate abstract class animal with abstract methods talk
+
+d= dog()
+d.talk()
+
+<b>Output</b>
+Wuff wuff!</pre>
+        <p class="text-left">That's all for now, this blog will be updated on a regular basis and i hope you have benefitted from this quick tutorial.</p>
+        </div>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="static/js/bootstrap.js"></script>
+</body>
+</html>

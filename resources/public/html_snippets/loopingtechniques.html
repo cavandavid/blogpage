@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ControlFlow</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="static\css\styles.css">
+    <link rel="stylesheet" href="static\css\animations.css">
+<style>
+    .heading{
+        margin-top: -30px;
+        margin-bottom:-20px;}
+    p{
+    font-size:18px;}
+    .innercontent{font-size:15px;}
+    .codecontent{
+    padding-top:5px;
+    padding-bottom:2px;}
+    code{
+    background-color:#d9edf7;
+    font-size:14px;
+    }
+    .for_big_headings{
+    font-size:17px;}
+    pre{
+    font-size:14px;
+    }
+    pre{
+    font-size:14px;}
+    .navbar{
+    font-size:16px;
+    margin-right:-10px;
+    }
+
+</style>
+</head>
+<body>
+<div class="text-center">
+    <div class="container">
+        <div class="row heading">
+            <img src="static\images\beyond.png">
+        </div>
+        <div class="row outernavbar">
+            <div class="col-md-2"></div>
+            <div class="col-md-2 navbar"><a href="{{url_for('home')}}"> Back to Home</a></div>
+            <div class="col-md-2 navbar"><a href="{{url_for('beyondbasics')}}"> Comprehensions</a></div>
+            <div class="col-md-2 navbar"><a href="{{url_for('loopingtechniques')}}"> Looping Techniques</a></div>
+            <div class="col-md-2 navbar"><a href="{{url_for('inheritance')}}"> Inheritance, Abstract Class</a></div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <p class="text-left">1. <b>Enumeration</b><br>
+                <div class="text-left innercontent">
+            Enumeration allows you to have an ordered indexing associated with your collection. As always, an example will make things more clear.
+            <pre class="innercontent">my_secular_list=['John','Ramesh','Suresh','Ahmed']
+for index,item in enumerate(my_secular_list):
+          print(str(index)+". "+item)
+
+<b>Output</b>
+0. John
+1. Ramesh
+2. Suresh
+3. Ahmed</pre>
+           <p class="text-left innercontent">
+            Enumerate also allows an optional argument
+        </p>
+            <p class="text-left innercontent"> <b>NOTE:</b> Not just lists, enumeration also works with other collection types like sets, tuples etc.</p>
+
+        </div>
+
+            <p class="text-left">2. <b>Zip</b><br>
+                <div class="text-left innercontent">Zip allowed you to iterate two or more lists at the same time in a single iteration. Lets just into an example
+                <pre class="innercontent">my_secular_list=['John','Ramesh','Suresh','Ahmed']
+greetings=['Hello','Namaste','Namaste','Salaam']
+for x,y in zip(greetings,my_secular_list):
+     print(x+" "+y)
+
+<b>Output</b>
+Hello John
+Namaste Ramesh
+Namaste Suresh
+Salaam Ahmed</pre>
+    </div>
+            </p>
+
+
+            </p>
+        </div>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="static/js/bootstrap.js"></script>
+</body>
+</html>

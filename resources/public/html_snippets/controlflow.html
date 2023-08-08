@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ControlFlow</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="static\css\styles.css">
+    <link rel="stylesheet" href="static\css\animations.css">
+<style>
+    .heading{
+        margin-top: -30px;
+        margin-bottom:-20px;}
+    p{
+    font-size:18px;}
+    .innercontent{font-size:15px;}
+    .codecontent{
+    padding-top:5px;
+    padding-bottom:2px;}
+    code{
+    background-color:#d9edf7;
+    font-size:14px;
+    }
+    .for_big_headings{
+    font-size:17px;}
+    pre{
+    font-size:14px;
+    }
+    .navbar2{
+    font-size:17px;
+    padding-bottom:10px;}
+</style>
+</head>
+<body>
+<div class="text-center">
+    <div class="container">
+        <div class="row heading">
+            <img src="static\images\controlflow.png">
+        </div>
+        <div class="row navbar2">
+            <div class="col-md-2"><a href="{{url_for('basics')}}">Basics</a></div>
+            <div class="col-md-2"><a href="{{url_for('controlflow')}}">Control Flow</a></div>
+            <div class="col-md-2"><a href="{{url_for('collections')}}">Collections</a></div>
+            <div class="col-md-2"><a href="{{url_for('exceptions')}}">Exceptions</a></div>
+            <div class="col-md-2"><a href="{{url_for('errors')}}">Errors</a></div>
+            <div class="col-md-2"><a href="{{url_for('beyondbasics')}}">Beyond Basics</a></div>
+
+        </div><br>
+        <div class="row">
+            <p class="for_big_headings">As we have seen uptil now, basic programs comprised of a series of statements which were executed faithfully from top to down by the python interpreter, but what if we wanted to change the flow of the program to make things more dynamic.<br>For eg, the program should be able to analyse the input and accordingly produce an apt output.We have the ability to alter  control flow of the program with certain built-in control flow statements. They are <b>if, for, while, break and continue statements</b> </p>
+        </div>
+        <div class="row text-left">
+            <div class="col-md-12">
+
+                <p class="text-left"><b>1. if statement</b></p>
+                <p class="text-left innercontent">The if statement checks for a condition and only if the condition is met, the following code block is executed. Behind the scenes, the condition is converted to a boolean value( True of False). If it evaluates to True then the code block is executed.
+                <br>Syntax<br>
+                  <pre><i>if condition:
+    Execute code block    </i></pre>
+                <div class="codecontent row">
+                    <div class="col-md-8">
+                        Let us define a function <b><i>our_bar</i></b> that displays welcome message based on age passed to function.<code style=display:block;white-space:pre-wrap;color:#337ab7>def our_bar(age):
+    if age<18:
+        print ("May i offer you some milk, son?")
+    if age>=18:
+        print ("Would you like a beer?")
+
+our_bar(8)
+>>May i offer you some milk, son?                        </code>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+
+
+                <p class="innercontent">With the understanding of how if statement works let's jump on to the next topic, for loop</p>
+            </div>
+        </div>
+
+            <p class="col-md-12">
+                <p class="text-left"><b>2. for loop</b></p>
+                <p class="text-left innercontent">The for loop executes a given set of statements for each item in a iterable series(lists,tuples etc.). The for loop in python is very similar to the <b><i>foreach</i></b> statement in javascript.
+                <br>Syntax<br>
+                    <pre class="text-left"><i>for item in iterable_series:
+    execute statements</i></pre>
+                <p class="innercontent text-left">Before we can see an example of for loop, i'd like to introduct the concept of range.
+                Range is a collection type which is nothing but a progression of integers.<br>
+                Syntax<br>
+                    <pre class="text-left"><i>for item in range(0,10):
+    print item
+
+Output
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+            </i></pre></p>
+               <p class="innercontent text-left"> <b>Note</b>:The ending limit of the range isn't a part of the range.<br>
+                   Now for a real world problem, lets create a function that prints out the square of a all numbers till a specified limit
+                </p>
+            <div class="row innercontent text-left codecontent">
+                <div class="col-md-6">
+                    Sample Code<code style=display:block;white-space:pre-wrap;color:#337ab7>def oursquarer(limit):
+    for i in range(1,limit+1):
+        print (i**2)
+
+oursquarer(10)
+
+Output
+1
+4
+9
+16
+25
+36
+49
+64
+81
+100</code>
+                </div><div class="col-md-6"></div>
+            </div>
+
+
+
+            <!--The while loop will repeatedly execute a given block of statements as long as the specified condition is being met.<b>Caution:</b> Until we reach a point where our condition is no longer getting satisfied, our program will keep executing until our computer runs out of memory.-->
+
+
+
+        <br>
+        <div class="row text-left">
+            <div class="col-md-12">
+                <p class="text-left"><b>3. while loop</b></p>
+                <p class="text-left innercontent">The while loop will repeatedly execute a given block of statements as long as the specified condition is being met.<b>Caution:</b> Until we reach a point where our condition is no longer getting satisfied, our program will keep executing until our computer runs out of memory.</p>
+                Syntax<br>
+                    <pre><i>while condition_evaluates_to_true:
+    execute statements</i></pre>
+    </div>
+            </div>
+            <p class="text-left innercontent">Let us solve a real world problem to find the sum of all numbers upto a specified limit , to further solidify our understanding of while loops.</p>
+            <div class="row innercontent text-left codecontent">
+                <div class="col-md-6">
+                    Sample Code<code style=display:block;white-space:pre-wrap;color:#337ab7>def sum_of_first_n_numbers(num):
+    ctr=1
+    sum=0
+    while ctr<=num:
+        sum+=ctr
+        ctr+=1
+    print ("The sum of first "+ str(num) +" numbers is "+str(sum))
+
+sum_of_first_n_numbers(6)
+
+Output
+The sum of first 6 numbers is 21                </code>
+                </div><div class="col-md-6"></div>
+            </div><br>
+        <p class="text-left "><b>4. break statement</b><br>
+        <p class="text-left innercontent">
+            The break statement is used when we want to break out of a loop that is currently being executed. In case of nested loops, we exit out of the innermost loop.</p>
+        <div class="row innercontent text-left codecontent">
+                <div class="col-md-8">
+                    Sample Code<code style=display:block;white-space:pre-wrap;color:#337ab7>solar_system=['Earth','Neptune','Jupiter','Pluto','Venus','Saturn','Uranus','Mercury','Mars']
+
+for planet in solar_system:
+    if planet is 'Pluto':
+        print("Sorry Pluto, you cant hang out with us anymore")
+        break
+    print ("Welcome to the club, "+planet)
+
+<b>Output</b>
+Welcome to the club, Earth
+Welcome to the club, Neptune
+Welcome to the club, Jupiter
+Sorry Pluto, you cant hang out with us anymore                </code>
+                </div><div class="col-md-4"></div>
+            </div><p class="text-left innercontent"><b>Note:</b> On reaching Venus, it breaks out of the for loop and does not execute the remaining items from the iterable series. What if we just wanted to ignore Venus and continue with execution rather than breaking out of the loop. This is where <b>pass</b> statement comes in handy</p>
+        <p class="text-left"><b>5. continue statement</b><br>
+        <p class="text-left innercontent">Unlike the break statement, the continue statement will ignore the remainder of the code block for that particular item and will continue with normal execution from the next item of the iterable series.<br>
+        Our Solar system program can be rewritten as<div class="row innercontent text-left codecontent">
+                <div class="col-md-8">
+                    Sample Code<code style=display:block;white-space:pre-wrap;color:#337ab7>solar_system=['Earth','Neptune','Jupiter','Pluto','Venus','Saturn','Uranus','Mercury','Mars']
+
+for planet in solar_system:
+    if planet is 'Pluto':
+        print("Sorry Pluto, you cant hang out with us anymore")
+        continue
+    print ("Welcome to the club, "+planet)
+
+<b>Output</b>
+Welcome to the club, Earth
+Welcome to the club, Neptune
+Welcome to the club, Jupiter
+Sorry Pluto, you cant hang out with us anymore
+Welcome to the club, Venus
+Welcome to the club, Saturn
+Welcome to the club, Uranus
+Welcome to the club, Mercury
+Welcome to the club, Mars</code>
+                </div><div class="col-md-4"></div>
+            </div>
+
+        </p>
+    </div></p>
+        </div>
+    </div>
+        </div>
+    </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="static/js/bootstrap.js"></script>
+</body>
+</html>

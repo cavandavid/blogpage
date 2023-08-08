@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Collections</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="static\css\styles.css">
+    <link rel="stylesheet" href="static\css\animations.css">
+<style>
+    .heading{
+        margin-top: -30px;
+        margin-bottom:-20px;}
+    p{
+    font-size:18px;}
+    .innercontent{font-size:15px;}
+    .codecontent{
+    padding-top:5px;
+    padding-bottom:2px;}
+    code{
+    background-color:#d9edf7;
+    font-size:14px;
+    }
+    pre{
+    font-size:14px;
+    }
+    .navbar2{
+    font-size:17px;
+    padding-bottom:10px;}
+</style>
+</head>
+<body>
+<div class="text-center">
+    <div class="container">
+        <div class="row heading">
+            <img src="static\images\collections.png">
+        </div>
+        <div class="row navbar2">
+            <div class="col-md-2"><a href="{{url_for('basics')}}">Basics</a></div>
+            <div class="col-md-2"><a href="{{url_for('controlflow')}}">Control Flow</a></div>
+            <div class="col-md-2"><a href="{{url_for('collections')}}">Collections</a></div>
+            <div class="col-md-2"><a href="{{url_for('exceptions')}}">Exceptions</a></div>
+            <div class="col-md-2"><a href="{{url_for('errors')}}">Errors</a></div>
+            <div class="col-md-2"><a href="{{url_for('beyondbasics')}}">Beyond Basics</a></div>
+
+        </div><br>
+        <div class="row">
+            <p>Collections are container data types whose members may either be of the same type (Homogenous) or of different types (Heterogenous). We will be covering some of the more significant collection types in this module<br></p>
+        </div>
+        <p class="row">
+            <p class="text-left"><b>1. Strings</b><br>
+                <div class="innercontent text-left">
+                Strings are immutable sequences of unicode codepoints. Immutable in the sense , once created it cannot be changed. Some of the cool stuff you can do with strings are <br>
+                <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">As always, the best way to learn coding is to code. Lets jump right in
+                <code style=display:block;white-space:pre-wrap;color:#337ab7><b>#Defining a string</b>
+
+my_string="Hello World"
+print (my_string)
+
+>>Hello World
+
+<b>#You can also concatenate strings to form new strings</b>
+
+my_string=my_string+", I hope you have a nice day!"
+print (my_string)
+
+>>Hello World, I hope you have a nice day!            </code>
+            Hold up, i thought we established that strings are immutable i.e once created we cannot change or alter them , then how did we change the value of my_string by concatenating two strings? Here's what's happening behind the scenes
+            <br><br>
+                When we initialise my_string = "Hello World" , what happens is a string object is created who's value is "Hello World". The variable my_string is simply a reference to this object as <i><b>in python a variable does not directly store the value but is simply a memory reference to the actual data.</b></i><br>
+            <br><b>my_string=my_string+", I hope you have a nice day!"</b> , this line takes the string object that is pointed by variable my_string and concatenates it with ", I hope you have a nice day!". This value is stored in a new string object which can be referenced by variable <b>my_string</b><br>
+            <br><b>NOTE</b>: The original string who's value is "Hello World" still exists but there is no way of accessing it, since the variable that once pointed towards it is not pointing to the new string object. Therefore the garbage collector will pick it up in a while.
+            <br> Some of the string built in functions are
+                <ul>
+                    <li><b>.upper() and .lower()</b><br>
+                    <div class="row innercontent text-left codecontent">
+            <div class="col-md-6">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>s= "I wish i could get some SLEEP"
+print (s.upper())
+>>I WISH I COULD GET SOME SLEEP</code></div>
+            <div class="col-md-6"><code style=display:block;white-space:pre-wrap;color:#337ab7;>s= "I wish i could get some SLEEP"
+print (s.lower())
+>>i wish i could get some sleep
+            </code></div>
+            </div>
+                    </li>
+                    <li><b>.find()</b><br>
+                        <div class="row innercontent text-left codecontent">
+            <div class="col-md-12">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>s= "Bran is actually the Night King"
+print (s.find('is'))
+>>5            </code>
+            Remember indexing starts from 0, so 'is' comes at 5th position in the string</div>
+
+            </div>
+
+                    </li>
+                    <li>
+                        <b>.replace()</b>
+                        <div class="row innercontent text-left codecontent">
+            <div class="col-md-12">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>s='Jon is the true king of the North'
+s=s.replace('Jon','Hodor')
+print(s)
+>>Hodor is the true king of the North            </code>
+            </div>
+
+            </div>
+
+                    </li>
+                    <li>
+                        <b>.join()</b>
+                        <div class="row innercontent text-left codecontent">
+            <div class="col-md-12">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>s=['Arya','Sansa','Jon','Danny']
+s="#||#".join(s)
+print(s)
+>>Arya#||#Sansa#||#Jon#||#Danny            </code>
+            </div>
+
+            </div>
+
+                    </li>
+                    <li><b>.partition()</b>
+                    <div class="row innercontent text-left codecontent">
+            <div class="col-md-12">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>s="Lets watch Game of Thrones or Breaking Bad"
+s=s.partition('or')
+print(s)
+>>('Lets watch Game of Thrones ', 'or', ' Breaking Bad')            </code>
+            </div>
+
+            </div>
+                    </li>
+                    <li>
+                        <b>.split()</b>
+                        <div class="row innercontent text-left codecontent">
+            <div class="col-md-12">
+            <code style=display:block;white-space:pre-wrap;color:#337ab7>s="Arya#||#Sansa#||#Jon#||#Danny"
+s=s.split('#||#')
+print(s)
+>>['Arya', 'Sansa', 'Jon', 'Danny']            </code>
+            </div>
+
+            </div>
+
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="col-md-4"></div>
+            </div>
+        </div>
+            </p>
+            <!--LISTS-->
+            <p class="text-left"><b>2. Lists</b>
+            <div class="text-left innercontent">
+            Lists is a mutable collection of heterogeneous items. Mutable signifies we can add,remove or modify items from the list. Heterogeneous signifies the members of list need not be of same data type.
+            <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+                <code style=display:block;white-space:pre-wrap;color:#337ab7><b>#Defining a list</b>
+
+my_list=[1,2,3,4,5]
+print (my_list)
+>>[1, 2, 3, 4, 5]
+
+<b>#Appending to list</b>
+
+my_list.append(29)
+print(my_list)
+>>[1, 2, 3, 4, 5, 29]
+
+<b>#Editing contents of list</b>
+my_list[0]=100
+print(my_list)
+>>[100, 2, 3, 4, 5, 29]
+
+<b>#We can also create a copy of the list</b>
+copy_list=my_list[:]
+            </code>
+            </div><div class="col-md-4"></div>
+
+            </div>
+
+        </div>
+            </p>
+            <p class="text-left"><b>3. Dictionaries</b>
+            <div class="text-left innercontent">
+            Dictionaries are an unordered collection of key value pairs, where in the keys are of immutable type(string, numbers etc.) and values are mutable type. The keys are unique in a dictionary.
+            <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+                <code style=display:block;white-space:pre-wrap;color:#337ab7><b>#Defining a dictionary</b>
+
+my_dict={'Java':'Compiled Language','Python':'Interpreted Language','C++':'Compiled Language'}
+print(my_dict)
+>>{'Java': 'Compiled Language', 'Python': 'Interpreted Language', 'C++': 'Compiled Language'}
+
+<b>#Accessing Value by using key as reference</b>
+
+print (my_dict['Java'])
+>>Compiled Language
+
+<b>#If we try to accesss the value of a key that does not exist we will get an error</b>
+
+print(my_dict['Ruby'])
+>>KeyError
+
+<b>#Editing dictionary</b>
+
+my_dict['Python']='Dynamically Typed Language'
+print (my_dict)
+>>{'Java': 'Compiled Language', 'Python': 'Dynamically Typed Language', 'C++': 'Compiled Language'}
+
+<b>#If we try to update a key that does not exist, a new value will be added to the dictionary.</b>
+
+my_dict['C#']="Compiled Language"
+print (my_dict)
+>>{'Java': 'Compiled Language', 'Python': 'Dynamically Typed Language', 'C++': 'Compiled Language', 'C#': 'Compiled Language'}
+
+  </code>
+            </div><div class="col-md-4"></div>
+
+            </div>
+        </div>
+            </p>
+            <!--TUPLE-->
+            <p class="text-left"><b>4. Tuples</b>
+            <div class="text-left innercontent">
+            Tuples are immutable sequences of random objects. Tuples are more strict as compared to lists, in the sense, once created, the objects in them cannot be modified or deleted.
+            <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+                <code style=display:block;white-space:pre-wrap;color:#337ab7><b>#Defining a tuple</b>
+
+my_tuple=("India","1","2.0")
+print (my_tuple)
+>>('India', '1', '2.0')
+
+<b>#Accessing elements of tuple</b>
+
+print (my_tuple[0])
+>>India
+
+<b>#As mentioned above we cannot alter objects in a tuple.</b>
+
+my_tuple[0]="Australia"
+
+>>my_tuple[0]="Australia"
+TypeError: 'tuple' object does not support item assignment
+                </code>
+            </div><div class="col-md-4"></div>
+
+            </div>
+            </div></p>
+        <p class="text-left"><b>5. Sets</b>
+            <div class="innercontent text-left">
+        Sets are  mutable sequences of unique immutable objects. The set in itself is mutable meaning we can add or remove elements,however its members have to be immutable like strings, numbers, tuples etc. Sets are unordered , which means unlike lists we cannot access its members using their index position.
+    <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+                <code style=display:block;white-space:pre-wrap;color:#337ab7><b>#Defining a set</b>
+
+my_set={1,2,3,4,5}
+print (my_set)
+>>{1, 2, 3, 4, 5}
+
+<b>#Accessing elements of set</b>
+
+print (my_set[0])
+>>print (my_set[0])
+TypeError: 'set' object does not support indexing
+
+<b>#Sets store only unique values so even though our collection has duplicates, it will store only those values which are unique.</b>
+
+list=[1,2,1,3,4,52,4,2]
+set=set(list)
+print(set)
+>>{1, 2, 3, 4, 52}
+                </code>
+            </div><div class="col-md-4"></div>
+
+            </div>
+    </div>
+        <p class="text-left innercontent">Adding elements in a set
+            <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+                <code style=display:block;white-space:pre-wrap;color:#337ab7><b>#Use add() method if you want to insert a single entry</b>
+
+my_set={1, 2, 3, 4, 52}
+my_set.add(200)
+print(my_set)
+>>{1, 2, 3, 4, 200, 52}
+
+<b>Use update() method to add multiple entries in a set</b>
+
+my_set.update({200,12,34,45})
+print(my_set)
+>>{1, 2, 3, 4, 34, 200, 12, 45, 52}
+</code>
+            </div><div class="col-md-4"></div>
+
+            </div>
+
+
+        <p class="text-left innercontent">Removing elements from a set</p>
+        <div class="row innercontent text-left codecontent">
+            <div class="col-md-8">
+                <code style=display:block;white-space:pre-wrap;color:#337ab7><b>#Using remove method</b>
+
+myset={1,2,3,4,5}
+myset.remove(3)
+print (myset)
+>>{1, 2, 4, 5}
+
+#The problem with remove() is that if specified element is not present in set it raises a key error
+
+myset.remove(10)
+>>myset.remove(10)
+KeyError: 10
+
+#<b>Another way to remove entries from a set is discard() method, this is considered as a better approach as it does not throw a KeyError even if the specified value is not present in the set</b>
+
+myset={1,2,3,4,5}
+myset.discard(10)
+print(myset)
+>>{1, 2, 3, 4, 5}
+</code>
+            </div><div class="col-md-4"></div>
+
+            </div>
+        <p class="text-left innercontent">Sets support a wide range of mathematical operations like <b>intersection, union, difference, issubset, issuperset etc.</b><br>
+        I encourage you to take some time and try out all the different methods related to colection types.</p>
+
+        </div>
+    </div>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="static/js/bootstrap.js"></script>
+</body>
+</html>

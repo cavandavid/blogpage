@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="css\styles.css">
+    <link rel="stylesheet" href="css\animations.css">
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" media="screen" />
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-dark.css" media="screen and (prefers-color-scheme: dark)" />
+<style>
+    body {
+    max-width: 100%
+    }
+    .content{
+    /*height:300px;*/
+    margin-top:30px;
+    padding-bottom: 10px;
+    color:#000;
+    }
+    h3{
+        color:#4b2a65;
+        font-size:28px;
+    }
+    p{
+    font-size:16px;}
+
+    .footerarea{background-color:cornflowerblue;
+    color:white;}
+    .learning-bar{
+        color:#fff;
+        /*background-color:#ddd;*/
+        /*color: #fff;*/
+        background-color: #752575;
+	border-radius: 0.5em;
+
+    }
+    /*.learning-bar:hover {background-color: black;}*/
+    .override-button {
+                      background: none;
+                      border: none;
+                      font-size:18px;
+                      padding:3px;}
+    .learning-bar:hover {
+                      border: none;
+                      /*width:100%;*/
+                      font-size:18px;
+                      /*padding:3px;*/
+                      /*color:white;*/
+                      /*background-color: #080808;*/
+                  }                      
+    .dropdown-menu{
+        font-size:16px;
+        color:#000;
+    }
+    .dropdown-menu > li > a{
+        color:black;
+	border-bottom:1px dotted gray;	
+    }
+    .dropdown-menu > li > a:hover {color:#fff;
+                                   background-color: #3c3b3c;}        
+</style>
+</head>
+<body>
+<div class="text-center main-content">
+    <div class="container">
+        <div class="row content">
+            <div class="col-md-3">
+                <img src="static\images\cav.jpg" style="padding-top: 30px; width:72%; border-radius:2em; box-shadow:0.1em 0.5em lightgray"> <br><br><p style="font-size:16px;">Mini Projects</p><ul><li><a href="http://13.233.173.38:1099/github-trends" style="font-size:16px;">Languages trending on github</a></li></ul>
+            </div>
+            <div class="col-md-9 text-left" style="padding-bottom: 20px;">
+                <legend><h3><b>About Me</b></h3></legend>
+                    <p>A full stack Software Engineer with over 6 years of experience with expertise in Clojure, AWS, Kubernetes, Python and Relational databases</p>
+                <legend><h3><b>A little background Info</b></h3></legend>
+		<p> These days my interest lies in Clojure(script), AWS, Kubernetes; mainly fault tolerant distributed computing while keeping costs low. <br> This series is an attempt to document things i found interesting during my early learning days. The collection of topics here is an effort to help you realize how simple it is to dive into technologies you might have earlier deemed too cryptic, Lets dive in!</p>
+                    
+                <p style="margin-top:15px">If you find this tutorial helpful, i'd really like to hear about it :) , reach me at : <a href="https://www.linkedin.com/in/cavan-david-604222b2/">Cavan David</a></p>
+            </div>
+    </div>
+    <div class="row" style="padding-left: 70px;padding-right: 70px;">
+        <div class="col-md-3 learning-bar rounded">
+            <div class="dropdown open">
+                <button class="dropdown-toggle override-button" data-toggle="dropdown" style="background-color: none;" aria-expanded="true">Python</button>
+                  <ul class="dropdown-menu" style="width:100%; text-align: center;">
+                    <li><a href="/basics">The Basics</a></li>
+                    <li><a href="/controlflow">Control Flow</a></li>
+                    <li><a href="/collections">Collections</a></li>
+                    <li><a href="/exceptions">Exceptions</a></li>
+                    <li><a href="/errors">Errors</a></li>
+                    <li><a href="/beyondbasics">Beyond the basics</a></li>
+                  </ul>
+                </div>
+        </div>
+        <div class="col-md-3 learning-bar">
+            <div class="dropdown open">
+                <button class="dropdown-toggle override-button" data-toggle="dropdown">Clojure</button>
+                  <ul class="dropdown-menu" style="width:100%; text-align: center;">
+                    <li><a href="/clojuremap">Map Reduce</a></li>
+                    <li><a href="/clojuretimetravel">Fun with redefs</a></li>
+                    <li><a href="#">IO operations (WIP)</a></li>
+                    <li><a href="#">Basic web app (WIP)</a></li>
+                  </ul>
+                </div>
+        </div>
+        <div class="col-md-3 learning-bar">
+            <div class="dropdown open">
+                <button class="dropdown-toggle override-button" data-toggle="dropdown">PostgreSQL</button>
+                  <ul class="dropdown-menu" style="width:100%; text-align: center;">
+                    <li><a href="/psqlintro">Create & access database</a></li>
+                    <li><a href="/psqlcrud">CRUD Operations</a></li>
+                    <li><a href="/psqljoin">Joins</a></li>
+                    <li><a href="/psqltime">Play with time</a></li>
+                  </ul>
+                </div>
+        </div>
+        <div class="col-md-3 learning-bar">
+            <div class="dropdown open">
+                <button class="dropdown-toggle override-button" data-toggle="dropdown">Docker</button>
+                  <ul class="dropdown-menu" style="width:100%; text-align: center;">
+                    <li><a href="#">Introduction (WIP)</a></li>
+                    <li><a href="#">Get your hands dirty (WIP)</a></li>
+                    <li><a href="#">Docker Compose! (WIP)</a></li>
+                  </ul>
+                </div>
+        </div>       
+    </div>    
+</div>
+    
+</div><br>
+<!-- div class="text-center footerarea container">
+<div class="row">
+    <footer>Powered by Flask, HTML, CSS, Bootstrap and a lot of sleepless nights  </footer></div></div> -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
+

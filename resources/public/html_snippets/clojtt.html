@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+     <link rel="stylesheet"
+      href="static/css/styles/color-brewer.css">
+    <script src="static/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<style>
+
+    .content{
+    height:300px;
+    margin-top:30px;
+    padding-bottom: 10px;
+    color:#000;
+    }
+    h3{
+        color:#000;
+        font-size:18px;
+    }
+    .p-header{
+    font-size:24px;}
+    a{
+      font-size:16px;
+    }
+    p{
+      font-size:16px;
+    }
+    .syntax{
+      color:#86888a;
+      font-size:21px;
+    }
+    .p-normal{
+      font-size:16px;
+    }
+    .join-header{
+      font-size:32px;
+      font-weight: bold;
+    }
+    .note{
+      color:dimgrey;
+    }
+    pre{
+      font-size:14px;
+      background-color: #fff;
+    }    
+</style>
+</head>
+<body>
+<a href="/">
+  <img src="static/images/back2.png" style="width:48px">
+</a>	
+<div class="text-center main-content">
+    <div class="container">
+        <div class="row content">
+            <div class="col-md-12">
+              <legend style="font-size:82px; color:#849b9c;">Clojure</legend>
+            </div>
+
+              <div class="row">
+            <div class="col-md-3">
+              <a href=""><p class="p-normal"></p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="/clojuremap"><p class="p-normal">Map, Reduce, Filter</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="/clojuretimetravel"><p class="p-normal">Time and Clojure</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href=""><p class="p-normal"></br></p></a>
+            </div>
+          </div></br>     
+          <div class="col-md-2"></div>
+          <div class="col-md-8 p-normal text-left" style="padding-top:20px;">
+            <p style="font-weight:bold; font-size:44px; color:#4e5e67;">Play with time to manipulate function behaviour</p>
+            <p></br>I went ahead and created a really basic function birthday-wisher and some data structures to reflect different people, namely <b>Jim, Jack and James</b></p>
+            <pre><code class="clojure">(ns tt-blog.core
+  (:require [clj-time.core :as time]
+        [clojure.test :refer [testing is]]))
+
+(defn birthday-wisher
+  "I wish the person if its his birthday"
+  [{:keys [name birthday] :as person}]
+  (if (time/equal? 
+        (time/today) 
+         birthday)
+    (str "Happy birthday, " name "!")
+    (str "Its not your birthday, " name "!")))
+
+(def jim
+  "Jim's birthday is today"
+  {:name "Jim"
+   :birthday (time/today)})
+
+(def jack
+  "Jack's birthday is one month from now"
+  {:name "Jack"
+   :birthday (time/plus 
+               (time/today) 
+               (time/months 1))})
+
+(def james
+  "James' birthday is 2 days from now"
+  {:name   "James"
+   :birthday (time/plus 
+               (time/today) 
+               (time/days 2))})</code></pre>
+           <p>Jim's birthday is today, Jack's birthday is a month from now and James' birthday is 2 days from now.</br></p>
+           <p style="padding-top: 10px;">Lets throw in some tests</p>
+           <pre><code>(testing "checking integrity of birthday-wisher"
+  (is (= (birthday-wisher jim) "Happy birthday, Jim!")
+    "Jim should have been wished for his birthday!")
+  (is (= (birthday-wisher jack) "Its not your birthday, Jack!")
+    "Its not Jack's birthday!")
+  (is (= (birthday-wisher james) "Its not your birthday, James!")
+    "Its not James' birthday!"))</code></pre>
+  <p> These tests work as they should, but aren't as exhaustive as i would like.</p>
+  <p>What if i want to ensure that 2 days from now, James too would be wished for his birthday</p>
+  <p style="padding-top: 10px;">The birthday function relies on clj-time.core/now to get the current time.
+  We can redefine this function so that it it evaluates to a date of 2 days from now to see if james is wished on his birthday</p>
+  <pre><code>(testing "checking integrity of birthday-wisher "
+  (let [today-date (time/today)]
+    (is (= (with-redefs 
+           [time/today (fn []
+                         (time/plus 
+                           today-date 
+                           (time/months 1)))] 
+         (birthday-wisher jack)) "Happy birthday, Jack!")
+  "Jack should be wished 1 month from now")
+
+  (is (= (with-redefs 
+        [time/today (fn [] 
+                      (time/plus
+                        today-date
+                        (time/days 2)))] 
+        (birthday-wisher james)) "Happy birthday, James!")
+  "James should be wished 2 days from now")))</code></pre>
+  <p>The tests works as expected</p>
+  <p style="padding-top: 5px;">Now using with-redefs each time i want to test is getting a little repetitive</p>
+  <p>Creating a utility macro that i can call each time i want to time-travel and execute body in the new context seems like the right thing to do.. Let's do it!</p>
+  <pre><code>(defmacro with-time-travel
+  [time-operator duration & body]
+  `(let [operator# (case ~time-operator
+                        "+"  clj-time.core/plus
+                        "-"  clj-time.core/minus)
+         now-time#  (clj-time.core/today)]
+    (with-redefs [clj-time.core/today  
+      (fn [& _#]
+        (operator# now-time# ~duration))] ~@body)))</code></pre>
+   <p>Let's test it out, shall we?</p>    
+   <pre><code>tt-blog.core=> (time/today)
+#object[org.joda.time.LocalDate 0x603174ab "2019-03-17"]
+tt-blog.core=> jack
+{:name "Jack", :birthday #object[org.joda.time.LocalDate 0x6c1a37e9 "2019-04-17"]}
+tt-blog.core=> (with-time-travel "+" (time/months 1) (birthday-wisher jack))
+"Happy birthday, Jack!"</code></pre>
+    <p>It works!!</p> 
+
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>

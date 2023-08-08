@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="css\styles.css">
+    <link rel="stylesheet" href="css\animations.css">
+<style>
+
+    .content{
+    height:300px;
+    margin-top:30px;
+    padding-bottom: 10px;
+    color:#000;
+    }
+    h3{
+        color:#000;
+        font-size:18px;
+    }
+    .p-header{
+    font-size:24px;}
+    .p-normal{
+      font-size:16px;
+    }
+    .join-header{
+      font-size:20px;
+      font-weight: bold;
+    }
+    .note{
+      color:dimgrey;
+    }    
+</style>
+</head>
+<body>
+<a href="/">
+  <img src="static/images/back2.png" style="width:48px">
+</a>	
+<div class="text-center main-content">
+    <div class="container">
+        <div class="row content">
+            <div class="col-md-12">
+              <legend style="font-size:48px;">PSQL</legend>
+            </div>
+            <!-- NAVBAR -->
+            <div class="col-md-12">
+              <div class="row">
+            <div class="col-md-3">
+              <a href="{{url_for('psqlintro')}}"><p class="p-normal">Introduction</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="{{url_for('psqlcrud')}}"><p class="p-normal">CRUD Operations</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="{{url_for('psqljoin')}}"><p class="p-normal">Joins</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="{{url_for('psqltime')}}"><p class="p-normal">Playing with time</br></p></a>
+            </div>
+          </div></br>
+            <div class="row blue-table">
+              <div class="col-md-2 p-header" style="padding-left: 15%; padding-top: 2%;"></div>
+              <div class="col-md-8 p-normal" style="padding:20px; background-color: #f1f1f1;">For playing around with time, PSQL has some pretty cool functions associated with it. I encourage you to spend some time on 
+                <a href="https://www.postgresql.org/docs/8.0/functions-datetime.html">Documentation on datetime functions</a></div>
+              <div class="col-md-2 p-header" style="padding-left: 15%; padding-top: 2%;"></div>
+            </div>       
+          <div class="col-md-2"></div>
+          <div class="col-md-8 p-normal text-left" style="padding-top:20px;">
+            <p>Lets see the <b>now()</b> function which is generally used to keep track of things that are important to our business</p>
+            <p>For eg. a business might benefit from knowing when a new record was added in its customer table</p>
+            <pre style="background-color: #022438; color:white;"><code>cavan=> select now();
+               now                
+----------------------------------
+ 2019-03-09 20:01:45.057583+05:30
+(1 row)</code></pre><p>If the part in front of the date looks weird, don't worry its the timestamp part. The type is called timestamp with timezone</p>
+            <pre style="background-color: #022438; color:white;"><code>cavan=> select pg_typeof(now());
+        pg_typeof         
+--------------------------
+ timestamp with time zone
+(1 row)</code></pre>
+          <p>If the timestamp part is not relevant to you, you can use type cast to convert the value to a simpler data type like date</p>
+          <pre style="background-color: #022438; color:white;"><code>cavan=> select pg_typeof(now()::date);
+ pg_typeof 
+-----------
+ date
+(1 row)
+</code></pre>
+          <p></br>Lets create a birthdays table</p>
+          <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>CREATE</span> <span style='color:#800000; font-weight:bold; '>TABLE</span> birthdays<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>id</span> SERIAL <span style='color:#800000; font-weight:bold; '>PRIMARY</span> <span style='color:#800000; font-weight:bold; '>KEY</span><span style='color:#808030; '>,</span> people_name TEXT <span style='color:#800000; font-weight:bold; '>REFERENCES</span> people<span style='color:#808030; '>(</span>name<span style='color:#808030; '>)</span><span style='color:#808030; '>,</span> birthday <span style='color:#800000; font-weight:bold; '>timestamp</span> <span style='color:#800000; font-weight:bold; '>DEFAULT</span> now<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#808030; '>)</span><span style='color:#808030; '>;</span>
+          </pre>
+          <p class="note">Note: SERIAL type is used to signify its an auto incrementing integer</p>
+          <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>INSERT</span> <span style='color:#800000; font-weight:bold; '>INTO</span> birthdays<span style='color:#808030; '>(</span>people_name<span style='color:#808030; '>,</span>birthday<span style='color:#808030; '>)</span> <span style='color:#800000; font-weight:bold; '>VALUES</span><span style='color:#808030; '>(</span><span style='color:#0000e6; '>'Ned'</span><span style='color:#808030; '>,</span> <span style='color:#0000e6; '>'1959-4-17'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>;</span>
+          </pre>
+
+          <p class="note text-center" ></br>While making this i vowed to be as accurate as possible so..</p>
+          <img src="static/images/seanbean1.png" style="width:100%;">
+          <p></br>I went ahead and populated some more values for our birthdays table</p>
+          <pre style="background-color: #022438; color:white;"><code>cavan=> select * from birthdays;
+
+ id | people_name |      birthday       
+----+-------------+---------------------
+  3 | Ned         | 1959-04-17 00:00:00
+  4 | Ned         | 1959-04-17 00:00:00
+  5 | Robert      | 1958-01-01 00:00:00
+  6 | Jon         | 1986-12-26 00:00:00
+  7 | Jamie       | 1970-07-27 00:00:00
+  8 | Theon       | 1989-01-02 00:00:00
+  9 | Joffrey     | 1994-01-01 00:00:00
+ 10 | Cersei      | 1973-01-01 00:00:00
+ 11 | Daenerys    | 1985-07-27 00:00:00
+ 12 | Arya        | 1998-01-02 00:00:00
+ 13 | Sansa       | 1993-01-01 00:00:00
+ 14 | Bran        | 1999-01-01 00:00:00
+(12 rows)</code></pre>
+        <p>Notice the birthdays is a timestamp value, and since we provided only dates, there is an implicit conversion that takes place from dates to timestamp value.
+        </p><br>
+        <p>Now that we have some data, lets have some fun</p>
+        <p class="join-header"></br>1. TYPE CASTS</p>
+        <p>Say i want to see simple dates instead of timestamps, i'l go ahead and use type casting (::)</p>
+        <pre style="background-color: #022438; color:white;"><code>cavan=> select birthday::date from birthdays;
+  birthday  
+------------
+ 1959-04-17
+ 1959-04-17
+ 1958-01-01
+ 1986-12-26
+ 1970-07-27
+ 1989-01-02
+ 1994-01-01
+ 1973-01-01
+ 1985-07-27
+ 1998-01-02
+ 1993-01-01
+ 1999-01-01
+(12 rows)</code></pre>
+        <p>The cast type is pretty cool right, but you can only cast to compatible values.</p>
+        <p>Say i hit my head really hard on my way to the office, and i want to cast timestamps to integers</p>
+        <pre style="background-color: #022438; color:white;"><code>cavan=> select birthday::int from birthdays;
+        ERROR:  cannot cast type timestamp without time zone to integer</code></pre>
+        <p>Yeah doesn't work</p>
+        <br>
+        <p class="join-header">2. DATE_TRUNC</p>
+        <p>Another cool function we have with dates is DATETRUNC. As the name suggests it ignores values beyond the specified precision level.</p>
+        <p>For eg. say i Only care about birthday years</p>
+        <pre style="background-color: #022438; color:white;"><code>cavan=> select people_name,DATE_TRUNC('year',birthday) from birthdays;
+ people_name |     date_trunc      
+-------------+---------------------
+ Ned         | 1959-01-01 00:00:00
+ Ned         | 1959-01-01 00:00:00
+ Robert      | 1958-01-01 00:00:00
+ Jon         | 1986-01-01 00:00:00
+ Jamie       | 1970-01-01 00:00:00
+ Theon       | 1989-01-01 00:00:00
+ Joffrey     | 1994-01-01 00:00:00
+ Cersei      | 1973-01-01 00:00:00
+ Daenerys    | 1985-01-01 00:00:00
+ Arya        | 1998-01-01 00:00:00
+ Sansa       | 1993-01-01 00:00:00
+ Bran        | 1999-01-01 00:00:00
+(12 rows)</code></pre>
+          <p>As seen it conveniently ignores the information about the date up until the specified parameter(In this case year).</p><br>
+          <p class="join-header">3. EXTRACT</p>
+          <p>The extract function allows you to extract individual parts of a timestamp or interval</p>
+          <pre style="background-color: #022438; color:white;"><code>cavan=> select people_name,EXTRACT(year from birthday) from birthdays;
+ people_name | date_part 
+-------------+-----------
+ Ned         |      1959
+ Ned         |      1959
+ Robert      |      1958
+ Jon         |      1986
+ Jamie       |      1970
+ Theon       |      1989
+ Joffrey     |      1994
+ Cersei      |      1973
+ Daenerys    |      1985
+ Arya        |      1998
+ Sansa       |      1993
+ Bran        |      1999
+(12 rows)</code></pre>
+          <p>Seems okay right? But it's a real power tool to have in your PSQL utility belt.</p>
+          <p>Say you came upon a really cool joke on the internet but unfortunately as luck would have it, only 90's kids could relate to it.</p> 
+          <p>So how do you extract only those people that were born in the 90's?</p>
+          <pre style="background-color: #022438; color:white;"><code>cavan=> select * from birthdays where EXTRACT(decade from birthday) = 199;
+ id | people_name |      birthday       
+----+-------------+---------------------
+  9 | Joffrey     | 1994-01-01 00:00:00
+ 12 | Arya        | 1998-01-02 00:00:00
+ 13 | Sansa       | 1993-01-01 00:00:00
+ 14 | Bran        | 1999-01-01 00:00:00
+(4 rows)</code></pre>
+          <p>There our secret is safe..</p>
+          <br>
+          <p>The journey doesn't end here, I'd encourage you to go through <a href="https://www.postgresql.org/docs/8.4/functions-datetime.html">Documentation of datetime functions</a> </p>
+
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
+

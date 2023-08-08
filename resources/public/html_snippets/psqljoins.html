@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="css\styles.css">
+    <link rel="stylesheet" href="css\animations.css">
+<style>
+
+    .content{
+    height:300px;
+    margin-top:30px;
+    padding-bottom: 10px;
+    color:#000;
+    }
+    h3{
+        color:#000;
+        font-size:18px;
+    }
+    .p-header{
+    font-size:24px;}
+    .p-normal{
+      font-size:16px;
+    }
+    .join-header{
+      font-size:20px;
+      font-weight: bold;
+    }
+    .note{
+      color:dimgrey;
+    }    
+</style>
+</head>
+<body>
+<a href="/">
+  <img src="static/images/back2.png" style="width:48px">
+</a>	
+<div class="text-center main-content">
+    <div class="container">
+        <div class="row content">
+            <div class="col-md-12">
+              <legend style="font-size:48px;">PSQL</legend>
+            </div>
+            <!-- NAVBAR -->
+            <div class="col-md-12">
+              <div class="row">
+            <div class="col-md-3">
+              <a href="{{url_for('psqlintro')}}"><p class="p-normal">Introduction</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="{{url_for('psqlcrud')}}"><p class="p-normal">CRUD Operations</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="{{url_for('psqljoin')}}"><p class="p-normal">Joins</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="{{url_for('psqltime')}}"><p class="p-normal">Playing with time</br></p></a>
+            </div>
+          </div></br>
+            <div class="row blue-table">
+              <div class="col-md-2 p-header" style="padding-left: 15%; padding-top: 2%;"></div>
+              <div class="col-md-8 p-normal" style="padding:20px; background-color: #f1f1f1;">Joins are just ways SQL gives you to look at
+              data from different tables in a single combined format. As the name suggests, it literally joins two tables for viewing purposes</div>
+              <div class="col-md-2 p-header" style="padding-left: 15%; padding-top: 2%;"></div>
+            </div>       
+          <div class="col-md-2"></div>
+          <div class="col-md-8 p-normal text-left" style="padding-top:20px;">
+            <p>I went ahead and populated our people and rulers tables</p>
+            <pre style="background-color: #022438; color:white;"><code>cavan=> select * from rulers;
+ id |   name   |       title       | people_id 
+----+----------+-------------------+-----------
+  1 | Robert   | King of Westeros  |         2
+  2 | Joffrey  | King of Westeros  |         6
+  3 | Jon      | King of the north |         3
+  4 | Daenerys | Queen of Dragons  |         8
+(4 rows)</code></pre>
+          <pre style="background-color: #022438; color:white;"><code>cavan=> select * from people;
+ id |   name   |   house   
+----+----------+-----------
+  1 | Ned      | Stark
+  2 | Robert   | Baratheon
+  3 | Jon      | Snow
+  4 | Jamie    | Lannister
+  5 | Theon    | Greyjoy
+  6 | Joffrey  | Baratheon
+  7 | Cersei   | Baratheon
+  8 | Daenerys | Targaryen
+(8 rows)</code></pre>
+        <p>To begin with, let's go over some of the more common joins</p>
+        <p class="join-header">1. LEFT JOIN</p>
+        <p>Left join basically says consider all records on the left table and only those records from the right table for which the JOIN condition matches</p>
+        <pre style="background-color: #022438; color:white;"><code>cavan=> select * from rulers left join people on rulers.people_id = people.id;
+ id |   name   |       title       | people_id | id |   name   |   house   
+----+----------+-------------------+-----------+----+----------+-----------
+  1 | Robert   | King of Westeros  |         2 |  2 | Robert   | Baratheon
+  2 | Joffrey  | King of Westeros  |         6 |  6 | Joffrey  | Baratheon
+  3 | Jon      | King of the north |         3 |  3 | Jon      | Snow
+  4 | Daenerys | Queen of Dragons  |         8 |  8 | Daenerys | Targaryen
+(4 rows)</code></pre><br>
+        <p class="join-header">2. RIGHT JOIN</p>
+        <p>Right join basically says consider all records on the right table and only those records from the left table for which the JOIN condition matches</p>
+        <pre style="background-color: #022438; color:white;"><code>cavan=> select * from rulers right join people on rulers.people_id = people.id;
+ id |   name   |       title       | people_id | id |   name   |   house   
+----+----------+-------------------+-----------+----+----------+-----------
+  1 | Robert   | King of Westeros  |         2 |  2 | Robert   | Baratheon
+  2 | Joffrey  | King of Westeros  |         6 |  6 | Joffrey  | Baratheon
+  3 | Jon      | King of the north |         3 |  3 | Jon      | Snow
+  4 | Daenerys | Queen of Dragons  |         8 |  8 | Daenerys | Targaryen
+    |          |                   |           |  5 | Theon    | Greyjoy
+    |          |                   |           |  4 | Jamie    | Lannister
+    |          |                   |           |  1 | Ned      | Stark
+    |          |                   |           |  7 | Cersei   | Baratheon</code></pre><br>
+    <p class="join-header">3. INNER JOIN</p>
+    <p>Inner join consider only records from both the tables for which the condition matches</p>
+    <pre style="background-color: #022438; color:white;"><code>cavan=> select * from people inner join rulers on people.name = rulers.name;
+ id |   name   |   house   | id |   name   |       title       | people_id 
+----+----------+-----------+----+----------+-------------------+-----------
+  2 | Robert   | Baratheon |  1 | Robert   | King of Westeros  |         2
+  6 | Joffrey  | Baratheon |  2 | Joffrey  | King of Westeros  |         6
+  3 | Jon      | Snow      |  3 | Jon      | King of the north |         3
+  8 | Daenerys | Targaryen |  4 | Daenerys | Queen of Dragons  |         8
+(4 rows)</code></pre>
+        <p>There are more types of joins in PSQL, but with the understanding of the above three joins you should be in pretty good place as far as joins are concerned</p>
+          </div>
+        </div>
+      </div>
+  </div>
+</body>
+</html>

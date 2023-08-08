@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="css\styles.css">
+    <link rel="stylesheet" href="css\animations.css">
+<style>
+
+    .content{
+    height:300px;
+    margin-top:30px;
+    padding-bottom: 10px;
+    color:#000;
+    }
+    h3{
+        color:#000;
+        font-size:18px;
+    }
+    .p-header{
+    font-size:24px;}
+    .p-normal{
+      font-size:16px;
+    }
+    .note{
+      color:dimgrey;
+    }    
+</style>
+</head>
+<body>
+<a href="/">
+  <img src="static/images/back2.png" style="width:48px">
+</a>	
+<div class="text-center main-content">
+    <div class="container">
+        <div class="row content">
+            <div class="col-md-12">
+              <legend style="font-size:48px;">PSQL</legend>
+            </div>
+            <!-- NAVBAR -->
+            <div class="col-md-12">
+              <div class="row">
+            <div class="col-md-3">
+              <a href="{{url_for('psqlintro')}}"><p class="p-normal">Introduction</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="{{url_for('psqlcrud')}}"><p class="p-normal">CRUD Operations</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="{{url_for('psqljoin')}}"><p class="p-normal">Joins</p></a>
+            </div>
+            <div class="col-md-3">
+              <a href="{{url_for('psqltime')}}"><p class="p-normal">Playing with time</br></p></a>
+            </div>
+          </div></br>
+            <div class="row blue-table">
+              <div class="col-md-2 p-header" style="padding-left: 15%; padding-top: 2%;"></div>
+              <div class="col-md-8 p-normal" style="padding:20px; background-color: #f1f1f1;">CRUD operations form the heart of all PSQL operations as your webapp
+              will be doing a lot of these to give a seemless experience to the user. If you didn't already know it stands for : Create, Read, Update and Delete</div>
+              <div class="col-md-2 p-header" style="padding-left: 15%; padding-top: 2%;"></div>
+            </div>
+        <!-- </div> -->
+        <!-- <div class="row content"> -->
+          <div class="col-md-2"></div>
+          <div class="col-md-8 p-normal text-left" style="padding-top:20px;">
+            <p>We continue with the people and rulers tables we created in the last blog</p>
+            <p>Now i've noticed some blogs using tv show references which to be honest comes off as a bit unprofessional, so for the sake of this blog, lets keep it formal...</p>
+            <p class=p-header><b>INSERT</b></p>
+            <p>Insert is pretty straight forward in PSQL</p>
+            <p style="color:dimgrey;">1. Insert a record specifying the column names</p>
+            <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>INSERT</span> <span style='color:#800000; font-weight:bold; '>INTO</span> people<span style='color:#808030; '>(</span>name<span style='color:#808030; '>,</span>house<span style='color:#808030; '>)</span> <span style='color:#800000; font-weight:bold; '>VALUES</span> <span style='color:#808030; '>(</span><span style='color:#0000e6; '>'Ned'</span><span style='color:#808030; '>,</span> <span style='color:#0000e6; '>'Stark'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>;</span>
+            </pre>
+            <p style="color:dimgrey;">2. Insert a record without giving column name .</p>
+            <p style="color:dimgrey;">NOTE: You need to make sure the order is maintained according to the columns of the table</p>
+            <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>INSERT</span> <span style='color:#800000; font-weight:bold; '>INTO</span> people <span style='color:#800000; font-weight:bold; '>VALUES</span> <span style='color:#808030; '>(</span><span style='color:#008c00; '>2</span><span style='color:#808030; '>,</span> <span style='color:#0000e6; '>'Robert'</span><span style='color:#808030; '>,</span> <span style='color:#0000e6; '>'Baratheon'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>;</span>
+            </pre>
+            <p style="color:dimgrey;">3. You can also insert multiple rows at a time.</p>
+            <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>INSERT</span> <span style='color:#800000; font-weight:bold; '>INTO</span> people <span style='color:#800000; font-weight:bold; '>VALUES</span> <span style='color:#808030; '>(</span><span style='color:#008c00; '>3</span><span style='color:#808030; '>,</span> <span style='color:#0000e6; '>'Jon'</span><span style='color:#808030; '>,</span> <span style='color:#0000e6; '>'Snow'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>,</span> <span style='color:#808030; '>(</span><span style='color:#008c00; '>4</span><span style='color:#808030; '>,</span> <span style='color:#0000e6; '>'Jamie'</span><span style='color:#808030; '>,</span> <span style='color:#0000e6; '>'Lannister'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>,</span> <span style='color:#808030; '>(</span><span style='color:#008c00; '>5</span><span style='color:#808030; '>,</span> <span style='color:#0000e6; '>'Theon'</span><span style='color:#808030; '>,</span> <span style='color:#0000e6; '>'Greyjoy'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>;</span>
+            </pre>
+            <p class="p-header"><b>UPDATE</b></p>
+            <p>As the real world is changing, we will often need to change values we once entered. That's where the UPDATE statement comes in handy</p>
+            <p class="note">Later on Jon realizes he's no snow, but of royal lineage. lets update our table aswell</p>
+            <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>UPDATE</span> people <span style='color:#800000; font-weight:bold; '>SET</span> house <span style='color:#808030; '>=</span> <span style='color:#0000e6; '>'Targaryen'</span> <span style='color:#800000; font-weight:bold; '>where</span> name <span style='color:#808030; '>=</span> <span style='color:#0000e6; '>'Jon'</span><span style='color:#808030; '>;</span>
+            </pre>
+            <p class="note">NOTE: If you dont specify the where clause, UPDATE statement will set the value for all the records</p>
+            <p>PSQL has a bunch of string functions to play with, lets try out the concat function</p>
+            <p class="note">Find more information on string functions on https://www.postgresql.org/docs/9.1/functions-string.html</p>
+            <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>UPDATE</span> people <span style='color:#800000; font-weight:bold; '>SET</span> house <span style='color:#808030; '>=</span> <span style='color:#0000e6; '>'House '</span> <span style='color:#808030; '>|</span><span style='color:#808030; '>|</span> house<span style='color:#808030; '>;</span>
+            </pre>
+            <pre style="background-color: #022438; color:white;"><code>UPDATE people SET house = 'House ' || house;
+
+cavan=> select * from people;
+ id |  name  |      house      
+----+--------+-----------------
+  1 | Ned    | House Stark
+  2 | Robert | House Baratheon
+  4 | Jamie  | House Lannister
+  5 | Theon  | House Greyjoy
+  3 | Jon    | House Targaryen
+(5 rows)</code></pre><br>
+            <p class="p-header"><b>DELETE</b></p>
+            <p>The syntax for DELETE statement goes 'DELETE FROM table where condition'</p>
+            <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>DELETE</span> <span style='color:#800000; font-weight:bold; '>FROM</span> people <span style='color:#800000; font-weight:bold; '>where</span> name <span style='color:#808030; '>=</span> <span style='color:#0000e6; '>'Theon'</span><span style='color:#808030; '>;</span>
+            </pre>
+            <pre style="background-color: #022438; color:white;"><code>;; Deleted the earlier entry for Theon, since no one likes him
+cavan=> select * from people;
+ id |  name  |      house      | age 
+----+--------+-----------------+-----
+  1 | Ned    | House Stark     |  18
+  2 | Robert | House Baratheon |  18
+  4 | Jamie  | House Lannister |  18
+  3 | Jon    | House Targaryen |  18
+(4 rows)</code></pre>
+            <p class="note">NOTE: If you don't specify the where clause, Delete statement will do away with all the records</p><br>
+            <p class="p-header"><b>ALTER</b></p>
+            <p>PSQL also allows you to alter the structure of tables that have been created with the ALTER statement</p>
+            <p>The ALTER statement syntax is ALTER TABLE {table_name} {settings}. Lets add a column of age to our people table</p>
+            <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>ALTER</span> <span style='color:#800000; font-weight:bold; '>TABLE</span> people <span style='color:#800000; font-weight:bold; '>ADD</span> <span style='color:#800000; font-weight:bold; '>COLUMN</span> age <span style='color:#800000; font-weight:bold; '>INT</span> <span style='color:#800000; font-weight:bold; '>DEFAULT</span> <span style='color:#008c00; '>18</span><span style='color:#808030; '>;</span>
+            </pre>
+            <pre style="background-color: #022438; color:white;"><code>
+cavan=> select * from people;
+ id |  name  |      house      | age 
+----+--------+-----------------+-----
+  1 | Ned    | House Stark     |  18
+  2 | Robert | House Baratheon |  18
+  4 | Jamie  | House Lannister |  18
+  3 | Jon    | House Targaryen |  18
+(4 rows)</code></pre>
+        <p>Actually we're better of without the age</p>
+        <pre style="background-color: #022438; color:white;"><code>ALTER TABLE people DROP COLUMN age;
+cavan=> select * from people ;
+ id |  name  |      house      
+----+--------+-----------------
+  1 | Ned    | House Stark
+  2 | Robert | House Baratheon
+  4 | Jamie  | House Lannister
+  3 | Jon    | House Targaryen
+(4 rows)</code></pre>
+      <p>And that's how easy it is , Hope the blog was useful!</p>
+          </div>
+          <div class="col-md-2"></div></div>
+    </div>     
+            
+
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

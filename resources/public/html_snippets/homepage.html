@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="static\css\bootstrap.css">
+    <link rel="stylesheet" href="static\css\styles.css">
+    <link rel="stylesheet" href="static\css\animations.css">
+<style>
+    .heading{
+        margin-top: -30px;
+        margin-bottom:-20px;}
+    .content{
+    height:300px;
+    }
+    p{
+    font-size:18px;}
+    .contenttable a{font-size:20px;}
+    .contenttable p{font-size:16px;}
+    .footerarea{background-color:cornflowerblue;
+    color:white;}
+</style>
+</head>
+<body>
+<div class="text-center">
+    <div class="container">
+        <div class="row heading">
+            <img src="static\images\heading_banner.png">
+        </div>
+        <div class="row content">
+            <div class="col-md-12">
+            <legend><h3><b>About Me</b></h3></legend>
+                <p>A functional programmer from Mumbai with expertise in Clojure, Golang and Python</p>
+            <legend><h3><b>What's this all about?</b></h3></legend>
+                <p>This is not meant to be a comprehensive guide to Python, but a concise collection of the things I have found interesting in my stint with Python. Post completion of this course, you should be in a comfortable position.. atleast as far as Python is concerned
+            </p><br>
+            <p>If you find this tutorial helpful, i'd really like to hear about it :) , reach me at : <a href="https://www.linkedin.com/in/cavan-david-604222b2/">Cavan David</a></p>
+              <legend><h3><b>Let's get started!</b></h3></legend>
+        </div>
+
+    </div>
+</div>
+    <div class="container contenttable">
+        <div class="row">
+            <div class="col-md-2">
+                <a href="{{url_for('basics')}}">The Basics</a><br><br>
+                <p>What is Python? and what makes this language so special </p>
+            </div>
+            <div class="col-md-2">
+                <a href="{{url_for('controlflow')}}">Control Flow</a><br><br>
+                <p>Lets face it, we would not be able to accomplish much with code without loops. Lets see what Python offers for control flow</p>
+            </div>
+            <div class="col-md-2">
+                <a href="{{url_for('collections')}}">Collections</a><br><br>
+                <p>Python comes packed with plenty of in built collection types like lists, dictionaries etc</p>
+            </div>
+            <div class="col-md-2">
+                <a href="{{url_for('exceptions')}}">Exceptions</a><br><br>
+                <p>Learn to safeguard your code against those nasty errors and even better learn which errors are worth defending yourself from</p>
+            </div>
+            <div class="col-md-2">
+                <a href="{{url_for('errors')}}">Errors</a><br><br>
+                <p>The study of these horrors will lead us to the realization that what seems to be a roadblock is infact an opportunity to get to know the language better</p>
+            </div>
+            <div class="col-md-2">
+                <a href="{{url_for('beyondbasics')}}">Beyond the basics</a><br><br>
+                <p>Random Stuff to show off to your colleagues :)</p>
+
+            </div>
+        </div>
+    </div>
+</div><br>
+<div class="text-center footerarea container">
+<div class="row">
+    <footer>Powered by Flask, HTML, CSS, Bootstrap and a lot of sleepless nights  </footer></div></div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="static/js/bootstrap.js"></script>
+</body>
+</html>
