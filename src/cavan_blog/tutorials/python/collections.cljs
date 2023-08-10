@@ -64,8 +64,8 @@ s=s.split('#||#')
 print(s)
 >>['Arya', 'Sansa', 'Jon', 'Danny']"]]]
     [:br]
-    [:p [:b "2. Lists"] [:hr]
-     "Lists is a mutable collection of heterogeneous items. Mutable signifies we can add,remove or modify items from the list. Heterogeneous signifies the members of list need not be of same data type."]
+    [:p [:b "2. Lists"]] [:hr]
+     [:p "Lists is a mutable collection of heterogeneous items. Mutable signifies we can add,remove or modify items from the list. Heterogeneous signifies the members of list need not be of same data type."]
     [:pre>code.language-python "#Defining a list
 
 my_list=[1,2,3,4,5]
@@ -85,8 +85,8 @@ print(my_list)
 
 #We can also create a copy of the list
 copy_list=my_list[:]"]
-    [:p [:b "3. Dictionaries"] [:hr]
-     "Dictionaries are an unordered collection of key value pairs, where in the keys are of immutable type(string, numbers etc.) and values are mutable type. The keys are unique in a dictionary."]
+    [:p [:b "3. Dictionaries"]] [:hr]
+     [:p "Dictionaries are an unordered collection of key value pairs, where in the keys are of immutable type(string, numbers etc.) and values are mutable type. The keys are unique in a dictionary."]
     [:pre>code.language-python
      "#Defining a dictionary
 
@@ -116,8 +116,8 @@ my_dict['C#']=\"Compiled Language\"
 print (my_dict)
 >>{'Java': 'Compiled Language', 'Python': 'Dynamically Typed Language', 'C++': 'Compiled Language', 'C#': 'Compiled Language'}
 "]
-    [:p [:b "4. Tuples"] [:hr]
-     "Tuples are immutable sequences of random objects. Tuples are more strict as compared to lists, in the sense, once created, the objects in them cannot be modified or deleted."]
+    [:p [:b "4. Tuples"]] [:hr]
+     [:p "Tuples are immutable sequences of random objects. Tuples are more strict as compared to lists, in the sense, once created, the objects in them cannot be modified or deleted."]
     [:pre>code.language-python
      "#Defining a tuple
 
@@ -136,8 +136,8 @@ my_tuple[0]=\"Australia\"
 
 >>my_tuple[0]=\"Australia\"
 TypeError: 'tuple' object does not support item assignment"]
-    [:p [:b "5. Sets"] [:hr]
-     "Sets are mutable sequences of unique immutable objects. The set in itself is mutable meaning we can add or remove elements,however its members have to be immutable like strings, numbers, tuples etc. Sets are unordered , which means unlike lists we cannot access its members using their index position."]
+    [:p [:b "5. Sets"]] [:hr]
+     [:p "Sets are mutable sequences of unique immutable objects. The set in itself is mutable meaning we can add or remove elements,however its members have to be immutable like strings, numbers, tuples etc. Sets are unordered , which means unlike lists we cannot access its members using their index position."]
     [:pre>code.language-python "#Defining a set
 
 my_set={1,2,3,4,5}

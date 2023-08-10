@@ -88,43 +88,38 @@
  (defn main-panel []
    (let [expansions @(re-frame/subscribe [::subs/expansions])
          navigated  @(re-frame/subscribe [::subs/current-route])]
-     [:div.container.parentMain>div.row
-      [:div.col-md-3
+     [:div.container-fluid.parentMain>div.row
+      [:div.col-md-3.col-xs-3
        [:div.parent.text-bg-dark.p-3
         [:div.row.text-center
          [:h2.mt-4 {:style {:color nil}}
           "CAVAN DAVID"]
          [:h6.display-8 "SENIOR SOFTWARE ENGINEER/ TECH LEAD"]]
-        [:div.row
-         [:div.col-md-12.me
-          [:a {:href "/"} [:img.img-thumbnail {:src "/images/cav.jpg"}]]]
-         [:div.col-md-12.mt-4
 
-          [:blockquote
+        [:div.me
+         [:a {:href "/"} [:img.img-thumbnail {:src "/images/cav.jpg"}]]]
+        [:div.mt-4
 
-           [:h3 {:style {:color nil}}
-            "About Me"]
-           [:p.lead
-            "A full stack Software Engineer with around 7 years of experience with expertise in Clojure(script), AWS, Kubernetes, Python and Relational databases"]
-           
-           
-           ]
-          [:div.content-block
-           [:p.remove-bottom-padding [:i.bi.bi-envelope.bootstrap-icon-default ] 
-            [:span.ps-2.mb-0 "cavan.david@yahoo.in"]]
-           [:p.remove-bottom-padding [:i.bi.bi-linkedin.bootstrap-icon-default ] 
-            [:span.ps-2.mb-0 [:a {:href "https://www.linkedin.com/in/cavan-david-604222b2/"}
-                              "cavan-david"]]]]
-          ]]
-        ]]
-      [:div.col-md-9
-       
+         [:blockquote
+
+          [:h3 {:style {:color nil}}
+           "About Me"]
+          [:p.lead
+           "A full stack Software Engineer with around 7 years of experience with expertise in Clojure(script), AWS, Kubernetes, Python and Relational databases"]]
+         [:div.content-block
+          [:p.remove-bottom-padding [:i.bi.bi-envelope.bootstrap-icon-default]
+           [:span.ps-2.mb-0 "cavan.david@yahoo.in"]]
+          [:p.remove-bottom-padding [:i.bi.bi-linkedin.bootstrap-icon-default]
+           [:span.ps-2.mb-0 [:a {:href "https://www.linkedin.com/in/cavan-david-604222b2/"}
+                             "cavan-david"]]]]]]]
+      [:div.col-md-9.col-xs-9
+
        [:div.row.tutorial-container
         [:div.text-center.homepage-title
          [:h2.strong.text-center.mt-3 "Code Made Easy"]
          [:p "The collection of topics here is an effort to help you realize how simple it is to dive into technologies you might have earlier deemed too cryptic, Lets dive in!"]]
 
-        [:div.col-md-12.tutorial-content.mt-3
+        [:div.col-12.tutorial-content.mt-3
          (case (get-in navigated [:data :name])
            ;; PYTHON
            :cavan-blog.routes/python-basics
@@ -175,35 +170,30 @@
                                      {:name "Joins" :link :cavan-blog.routes/postgres-joins}
                                      {:name "Play with time" :link :cavan-blog.routes/postgres-time}]]
             [listing-page :docker [{:name "Introduction (WIP)" :link :cavan-blog.routes/wip :disable true}
-                                   {:name "Get your hands dirty (WIP)" :link :cavan-blog.routes/wip :disable true}]]])]]
-       ]
-      
-      
+                                   {:name "Get your hands dirty (WIP)" :link :cavan-blog.routes/wip :disable true}]]])]]]
+
+
       ;; [:div.col-md-12.footer.black
       ;;  [:span.email "cavan.david@yahoo.in"]
       ;;  [:span.linkedin
       ;;   [:a {:href "https://www.linkedin.com/in/cavan-david-604222b2/"
       ;;        :target "_blank"} "Linkedin"]]]
       [:nav.navbar.fixed-bottom.navbar-expand-sm.navbar-dark.blue-linear-grad.bg-dark
- [:a.navbar-brand.ps-3 {:href "#"}
-  "Made with Clojurescript, retit and love"]
- [:button.navbar-toggler {:type "button"
-                          :data-toggle "collapse"
-                          :data-target "#navbarCollapse"
-                          :aria-controls "navbarCollapse"
-                          :aria-expanded "false"
-                          :aria-label "Toggle navigation"}
-  [:span.navbar-toggler-icon]]
- [:div#navbarCollapse.collapse.navbar-collapse
-  [:ul.navbar-nav.mr-auto
-   [:li.nav-item.active
-    [:a.nav-link {:href "#"}
-     "Home"
-     ]]
-   
-   
-   [:li.nav-item.dropup
-    
-    ]]]]
-      ]
+       [:a.navbar-brand.ps-3 {:href "#"}
+        "Made with Clojurescript, retit and love"]
+       [:button.navbar-toggler {:type "button"
+                                :data-toggle "collapse"
+                                :data-target "#navbarCollapse"
+                                :aria-controls "navbarCollapse"
+                                :aria-expanded "false"
+                                :aria-label "Toggle navigation"}
+        [:span.navbar-toggler-icon]]
+       [:div#navbarCollapse.collapse.navbar-collapse
+        [:ul.navbar-nav.mr-auto
+         [:li.nav-item.active
+          [:a.nav-link {:href "#"}
+           "Home"]]
+
+
+         [:li.nav-item.dropup]]]]]
      ))

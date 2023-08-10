@@ -23,6 +23,7 @@
 (re-frame/reg-event-db ::navigated
   (fn [db [_ new-match]]
     (js/console.log "|||" new-match)
+    (js/setTimeout #(js/Prism.highlightAll) 200)
     (let [old-match   (:current-route db)
           controllers (rfc/apply-controllers (:controllers old-match) new-match)]
       (assoc db :current-route (assoc new-match :controllers controllers)))))

@@ -1,7 +1,6 @@
 (ns cavan-blog.core
   (:require
    [reagent.dom :as rdom]
-   [reagent.core :as reagent]
    [re-frame.core :as re-frame]
    
    [reitit.frontend.easy :as rfe] 
@@ -12,26 +11,9 @@
   
    ))
 
-
-
 (defn dev-setup []
   (when config/debug?
     (println "dev mode")))
-;; Retit routing related
-
-
-
-
-;; (defn nav [{:keys [router current-route]}]
-;;   [:ul
-;;    (for [route-name (r/route-names router)
-;;          :let       [route (r/match-by-name router route-name)
-;;                      text (-> route :data :link-text)]]
-;;      [:li {:key route-name}
-;;       (when (= route-name (-> current-route :data :name))
-;;         "> ")
-;;       ;; Create a normal links that user can click
-;;       [:a {:href (href route-name)} (str text "| " route-name "  | "(href route-name) )]])])
 
 (defn init-routes! []
   (js/console.log "initializing routes")
@@ -51,4 +33,12 @@
   (re-frame/dispatch-sync [::events/initialize-db])
   (dev-setup)
   (init-routes!)
-  (mount-root))
+  (mount-root)
+  (js/Prism.highlightAll) 
+  (.addEventListener js/document
+                     "DOMContentLoaded"
+                     #(js/Prism.highlightAll))
+  
+  (js/setTimeout #(js/Prism.highlightAll) 200)
+
+  )

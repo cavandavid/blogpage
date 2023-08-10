@@ -6,8 +6,8 @@ body {
   background:#dfdfdf
 }
 .parentMain {
-
-  width: 1600px;
+  max-width: 1400px;
+  width: 90%;
 }
 .parent {
   /* margin:0px auto; */
@@ -19,6 +19,15 @@ body {
   font-size: 0.8em;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+@media (max-width: 480px) {
+  .parentMain {
+    width: 400px;
+  }
+  .parent {
+    height:auto
+  }
+}
+
 .expand-button {
   float:right;
   margin-right:1em;
